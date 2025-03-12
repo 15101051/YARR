@@ -568,17 +568,14 @@ class UniformReplayBuffer(ReplayBuffer):
         """
         if self.is_full():
             # add_count >= self._replay_capacity > self._stack_size
-            min_id = (self.cursor() - self._replay_capacity +
-                      self._timesteps - 1)
+            min_id = self.cursor() - self._replay_capacity + self._timesteps - 1
             max_id = self.cursor() - self._update_horizon
         else:
             min_id = 0
             max_id = self.cursor() - self._update_horizon
             if max_id <= min_id:
                 raise RuntimeError(
-                    'Cannot sample a batch with fewer than stack size '
-                    '({}) + update_horizon ({}) transitions.'.
-                    format(self._timesteps, self._update_horizon))
+                    f'Cannot sample a batch with fewer than stack size ({self._timesteps}) + update_horizon ({self._update_horizon}) transitions.')
 
         indices = []
         attempt_count = 0

@@ -51,7 +51,7 @@ class EnvRunner(object):
         self._episode_length = episode_length
         self._stat_accumulator = stat_accumulator
         self._rollout_generator = (
-            RolloutGenerator() if rollout_generator is None
+            RolloutGenerator(env_device) if rollout_generator is None
             else rollout_generator)
         self._rollout_generator._env_device = env_device
         self._weightsdir = weightsdir

@@ -241,7 +241,7 @@ class MultiTaskRLBenchEnv(MultiTaskEnv):
             self._set_new_task()
             self._episodes_this_task = 0
 
-        descriptions, obs = self._task.reset()
+        _, obs = self._task.reset()
         return self.extract_obs(obs)
 
     def step(self, action: np.ndarray) -> Transition:
